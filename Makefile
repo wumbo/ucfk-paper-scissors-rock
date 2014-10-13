@@ -16,19 +16,37 @@ all: game.out
 
 
 # Compile: create object files from C source files.
-game.o: game.c ../../drivers/avr/system.h
+game.o: game.c ../../drivers/avr/system.h 
 	$(CC) -c $(CFLAGS) $< -o $@
 
 system.o: ../../drivers/avr/system.c ../../drivers/avr/system.h
 	$(CC) -c $(CFLAGS) $< -o $@
 
+pacer.o: ../../utils/pacer.c ../../utils/pacer.h ../../drivers/avr/system.h ../../drivers/avr/timer.h
+	$(CC) -c $(CFLAGS) $< -o $@
+
+tinygl.o: ../../utils/tinygl.c ../../utils/tinygl.h ../../drivers/avr/system.h ../../drivers/display.h ../../utils/font.h ../../drivers/avr/timer.h
+	$(CC) -c $(CFLAGS) $< -o $@
+
+timer.o: ../../drivers/avr/timer.c ../../drivers/avr/timer.h ../../drivers/avr/system.h
+	$(CC) -c $(CFLAGS) $< -o $@
+
+display.o: ../../drivers/display.c ../../drivers/display.h ../../drivers/avr/system.h
+	$(CC) -c $(CFLAGS) $< -o $@
+
+font.o: ../../utils/font.c ../../utils/font.h ../../drivers/avr/system.h 
+	$(CC) -c $(CFLAGS) $< -o $@
+
+ledmat.o: ../../drivers/ledmat.c ../../drivers/ledmat.h ../../drivers/avr/system.h
+	$(CC) -c $(CFLAGS) $< -o $@
+
+
 
 
 # Link: create ELF output file from object files.
-game.out: game.o system.o
+game.out: game.o system.o pacer.o tinygl.o timer.o display.o font.o ledmat.o
 	$(CC) $(CFLAGS) $^ -o $@ -lm
 	$(SIZE) $@
-
 
 # Target: clean project.
 .PHONY: clean
