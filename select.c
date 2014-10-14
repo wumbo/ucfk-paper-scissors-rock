@@ -11,12 +11,6 @@
 #include "font5x7_1.h"
 #include "navswitch.h"
 
-
-#define PACER_RATE 500
-#define MESSAGE_RATE 10
-
-
-
 void display_symbol (char symbol)
 {
     char buffer[2];
@@ -27,12 +21,13 @@ void display_symbol (char symbol)
 
 char get_symbol(void) {
 	/* 'P' is Paper, 'R' is Rock, 'S' is Scissors */
-	char symbol = 'P'; // start at Paper
 	
+	char symbol = 'P'; // start at Paper
 	
 	/* readies tinygl */
     tinygl_font_set (&font5x7_1);
     tinygl_text_speed_set (1000);
+    tinygl_text_mode_set(TINYGL_TEXT_MODE_STEP);
     
 	 while (1) {	
         pacer_wait ();
