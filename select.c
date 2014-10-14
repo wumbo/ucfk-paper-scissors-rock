@@ -26,7 +26,7 @@ void display_symbol (char symbol)
 }
 
 char get_symbol(void) {
-	
+	/* 'P' is Paper, 'R' is Rock, 'S' is Scissors */
 	char symbol = 'P'; // start at Paper
 	
 	
@@ -39,7 +39,8 @@ char get_symbol(void) {
         tinygl_update ();
         navswitch_update ();
         
-        /* P->R, R->S, S->P when navswitch_north is pressed */
+        /* Scrolls through the symbols to play,
+         * P->R, R->S, S->P when navswitch_north is pressed */
         if (navswitch_push_event_p (NAVSWITCH_NORTH)) {
 			if (symbol == 'P') {
 				symbol = 'R';
@@ -52,7 +53,8 @@ char get_symbol(void) {
 			}
 		}
 		
-		/* goes other way when navswitch_south is pressed */
+		/* Scrolls through the symbols to play,
+		 * P->S, R->P, S->R when navswitch_south is pressed */
 		if (navswitch_push_event_p (NAVSWITCH_SOUTH)) {
 			if (symbol == 'P') {
 				symbol = 'S';
@@ -65,10 +67,12 @@ char get_symbol(void) {
 			}
 		}
 		
+		/* Selects the symbol */
 		if (navswitch_push_event_p (NAVSWITCH_PUSH)) {
 			return symbol;
 		}
 		
+		/* If Player is just scrolling, displays the current symbol */
 		display_symbol (symbol);
 	}
 }
