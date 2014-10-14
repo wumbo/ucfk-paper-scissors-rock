@@ -28,18 +28,16 @@ char get_symbol(void) {
 	char symbol = 'P'; // start at Paper
 	
 	
-	/* initializes tinygl/navswitch */
-	system_init ();
-    tinygl_init (PACER_RATE);
+	/* readies tinygl */
     tinygl_font_set (&font5x7_1);
-    tinygl_text_speed_set (MESSAGE_RATE);
-    navswitch_init ();
+    tinygl_text_speed_set (1000);
     
 	 while (1) {	
         pacer_wait ();
         tinygl_update ();
         navswitch_update ();
         
+        /* P->R, R->S, S->P when navswitch_north is pressed */
         if (navswitch_push_event_p (NAVSWITCH_NORTH)) {
 			if (symbol == 'P') {
 				symbol = 'R';
