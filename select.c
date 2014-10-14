@@ -9,6 +9,8 @@
 #include "pacer.h"
 #include "tinygl.h"
 #include "font5x7_1.h"
+#include "navswitch.h"
+
 
 #define PACER_RATE 500
 #define MESSAGE_RATE 10
@@ -50,6 +52,7 @@ char get_symbol(void) {
 			}
 		}
 		
+		/* goes other way when navswitch_south is pressed */
 		if (navswitch_push_event_p (NAVSWITCH_SOUTH)) {
 			if (symbol == 'P') {
 				symbol = 'S';
