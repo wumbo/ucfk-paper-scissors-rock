@@ -8,10 +8,11 @@
 #ifndef MESSAGE_H
 #define MESSAGE_H
 
-#include "system.h"
-#include "font.h"
-#include "pacer.h"
-#include "tinygl.h"
+void message_init(void);
+
+void display_winner_message(void);
+
+void display_loser_message(void);
 
 #endif
 /* MESSAGE_H */
