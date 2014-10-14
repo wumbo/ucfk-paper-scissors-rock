@@ -42,9 +42,8 @@ ledmat.o: ../../drivers/ledmat.c ../../drivers/ledmat.h ../../drivers/avr/system
 
 
 
-
 # Link: create ELF output file from object files.
-game.out: game.o system.o pacer.o tinygl.o timer.o display.o font.o ledmat.o
+game.out: game.o system.o pacer.o tinygl.o timer.o display.o font.o ledmat.o 
 	$(CC) $(CFLAGS) $^ -o $@ -lm
 	$(SIZE) $@
 
