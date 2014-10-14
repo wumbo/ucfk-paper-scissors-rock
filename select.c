@@ -71,6 +71,7 @@ char get_symbol(void) {
 		
 		display_symbol (symbol);
 	}
+}
 		
 		
 		
